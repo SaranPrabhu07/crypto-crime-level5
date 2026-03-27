@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Really? — Crypto Crime</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .trap-wrap {
+      min-height:100vh;display:flex;align-items:center;
+      justify-content:center;padding:2rem;position:relative;z-index:1;
+    }
+    .trap-card {
+      width:100%;max-width:580px;background:rgba(0,10,0,0.85);
+      border:1px solid rgba(255,0,60,0.4);border-top:3px solid var(--red);
+      border-radius:6px;padding:3rem 2.5rem;text-align:center;
+      box-shadow:0 0 60px rgba(255,0,60,0.1);animation:fadeUp 0.5s ease both;
+    }
+    .trap-icon { font-size:4rem;margin-bottom:1.5rem;animation:bounce 1.5s infinite; }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .trap-eyebrow { font-size:0.65rem;letter-spacing:0.45em;color:var(--red);text-transform:uppercase;margin-bottom:0.75rem;text-shadow:0 0 10px rgba(255,0,60,0.5); }
+    .trap-title {
+      font-family:var(--font-display);font-size:clamp(1.6rem,5vw,2.5rem);
+      font-weight:900;color:var(--red);letter-spacing:0.08em;line-height:1.15;
+      text-shadow:0 0 20px rgba(255,0,60,0.5);margin-bottom:1.5rem;
+      animation:glitchRed 5s infinite;
+    }
+    @keyframes glitchRed {
+      0%,90%,100%{text-shadow:0 0 20px rgba(255,0,60,0.5);transform:none}
+      92%{text-shadow:-3px 0 var(--cyan),3px 0 rgba(255,0,60,0.8);transform:skewX(-1deg)}
+      94%{text-shadow:0 0 20px rgba(255,0,60,0.5);transform:none}
+    }
+    .trap-divider { width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--red),transparent);margin:0 auto 1.5rem; }
+    .trap-stamp {
+      font-family:var(--font-display);font-size:0.7rem;font-weight:900;
+      letter-spacing:0.3em;color:var(--red);border:2px solid var(--red);
+      padding:0.4rem 1.2rem;border-radius:2px;display:inline-block;
+      margin-bottom:1.5rem;opacity:0.8;transform:rotate(-2deg);
+      text-shadow:0 0 8px rgba(255,0,60,0.5);
+    }
+    .trap-message { font-size:0.9rem;line-height:2;color:var(--text-dim);text-align:left;margin-bottom:1.5rem; }
+    .trap-message strong { color:var(--text); }
+    .trap-message .criminal { color:var(--red);font-family:var(--font-display);font-size:0.85em; }
+    .trap-message .highlight { color:var(--green);font-family:var(--font-display);font-size:0.85em; }
+    .clue-box {
+      background:rgba(0,255,65,0.05);border:1px solid var(--border-bright);
+      border-left:3px solid var(--green);padding:1rem 1.25rem;
+      font-size:0.82rem;color:var(--text-dim);line-height:1.8;text-align:left;
+      margin-top:1.25rem;
+    }
+    .clue-box strong { color:var(--green); }
+    .trap-footer { font-size:0.62rem;color:var(--text-dim);letter-spacing:0.2em;margin-top:2rem;border-top:1px solid var(--border);padding-top:1rem; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  </style>
+</head>
+<body>
+
+<div class="trap-wrap">
+  <div class="trap-card">
+
+    <div class="trap-icon">🪤</div>
+    <div class="trap-eyebrow">// SAROO SAYS HELLO</div>
+    <div class="trap-title">SERIOUSLY?<br/>AGAIN?</div>
+    <div class="trap-divider"></div>
+    <div class="trap-stamp">TRAP ACTIVATED · LEVEL 5</div>
+
+    <div class="trap-message">
+      You decoded a video. You found a message.
+      You walked to the <strong>Cybersecurity Research Lab</strong> —
+      because a tool told you to.<br/><br/>
+
+      Let's be honest. At this point,
+      <span class="criminal">SAROO</span> isn't even trying hard.
+      <strong>You're doing the work for them.</strong><br/><br/>
+
+      This is Level 5. You've been through an optical illusion,
+      a poem on a wall, and a promotional video —
+      and you still haven't learned the one rule that matters:<br/><br/>
+
+      <strong style="color:var(--yellow);font-size:1.05em;">
+        "The tools show you what SAROO wants you to see.
+        Your eyes show you the truth."
+      </strong>
+
+      <div class="clue-box">
+        🔍 <strong>Go back. Look at the video file.</strong><br/>
+        Not the footage. Not the decoded message.<br/>
+        The <strong>file itself</strong> is telling you everything.<br/><br/>
+        What is the video called?
+        Read it. <strong>The answer is in the name.</strong>
+      </div>
+    </div>
+
+    <div class="trap-footer">
+      CRYPTO CRIME · MINDKRAFT · SAROO IS DISAPPOINTED IN YOU
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const c = document.createElement("canvas");
+  c.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;opacity:0.05;pointer-events:none;z-index:0;";
+  document.body.prepend(c);
+  const cx = c.getContext("2d");
+  let cols, drops;
+  function init() { c.width=innerWidth;c.height=innerHeight;cols=Math.floor(c.width/14);drops=Array(cols).fill(1); }
+  function draw() {
+    cx.fillStyle="rgba(2,12,2,0.05)";cx.fillRect(0,0,c.width,c.height);
+    cx.fillStyle="#ff003c";cx.font="14px Share Tech Mono";
+    drops.forEach((y,i)=>{cx.fillText(Math.random()>.5?"1":"0",i*14,y*14);if(y*14>c.height&&Math.random()>.975)drops[i]=0;drops[i]++;});
+  }
+  init();setInterval(draw,50);addEventListener("resize",init);
+</script>
+</body>
+</html>
