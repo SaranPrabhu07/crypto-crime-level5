@@ -6,8 +6,8 @@
 
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbz_iI94FjuBai8AB5cry1g3LMh25E41Idu8D3K836pBPOpF4KhkQWqYrrbbuy4rrmaigg/exec";
 
-const VALID_TEAM_IDS = Array.from({ length: 600 }, (_, i) => "MK" + (2601 + i));
-// Range: MK2601 – MK3200 (600 IDs)
+const VALID_TEAM_IDS = Array.from({ length: 400 }, (_, i) => "MK" + (2601 + i));
+// Range: MK2601 – MK3000 (400 IDs)
 
 // ── PICK UP PARAMS FROM URL (carries data across domains) ──
 (function syncFromURL() {
