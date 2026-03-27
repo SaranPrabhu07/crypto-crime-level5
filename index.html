@@ -420,8 +420,7 @@
 <script>
   startBinaryRain(0.05);
 
-  const VALID_IDS = Array.from({ length: 400 }, (_, i) => "MK" + (2601 + i));
-  // Range: MK2601 – MK3000 (400 IDs)
+  const VALID_IDS   = ["MK2601","MK2602","MK2603","MK2604","MK2605","MK2606","MK2607","MK2608","MK2609","MK2610","MK2611","MK2612","MK2613","MK2614","MK2615","MK2616","MK2617","MK2618","MK2619","MK2620"];
   const LEVEL       = 5;
   const CORRECT_ANS = "CSE DEPARTMENT";
   const LETTER      = "O";
@@ -438,23 +437,19 @@
 
   // ── LETTER SEEDING ──
   window.addEventListener("DOMContentLoaded", () => {
-    // Seed letters only if not already present
+    // Always ensure both rows have at least the L1-L4 letters
     const existing = localStorage.getItem("collectedLetters");
-    let needsSeed = true;
+    let data = { row1: ["W","N","S","A"], row2: ["R","A","S","O"] };
     if (existing) {
       try {
         const parsed = JSON.parse(existing);
-        if (parsed && typeof parsed === "object" && !Array.isArray(parsed) &&
-            parsed.row1 && parsed.row1.length > 0) needsSeed = false;
-        if (Array.isArray(parsed) && parsed.length > 0) needsSeed = false;
+        if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+          if (Array.isArray(parsed.row1) && parsed.row1.length > 0) data.row1 = parsed.row1;
+          if (Array.isArray(parsed.row2) && parsed.row2.length >= 4) data.row2 = parsed.row2;
+        }
       } catch(e) {}
     }
-    if (needsSeed) {
-      localStorage.setItem("collectedLetters", JSON.stringify({
-        row1: ["W","N","S","A"],
-        row2: ["R","A","S","O"]
-      }));
-    }
+    localStorage.setItem("collectedLetters", JSON.stringify(data));
 
     if (!teamId) {
       document.getElementById("entryScreen").style.display = "flex";
@@ -491,22 +486,19 @@
 
     localStorage.setItem("teamId",   id);
     localStorage.setItem("teamName", id);
-    // Seed only if not already present
+    // Always ensure both rows have at least the L1-L4 letters
     const existingC = localStorage.getItem("collectedLetters");
-    let alreadyHas = false;
+    let dataC = { row1: ["W","N","S","A"], row2: ["R","A","S","O"] };
     if (existingC) {
       try {
         const p = JSON.parse(existingC);
-        if (p && typeof p === "object" && !Array.isArray(p) && p.row1 && p.row1.length > 0) alreadyHas = true;
-        if (Array.isArray(p) && p.length > 0) alreadyHas = true;
+        if (p && typeof p === "object" && !Array.isArray(p)) {
+          if (Array.isArray(p.row1) && p.row1.length > 0) dataC.row1 = p.row1;
+          if (Array.isArray(p.row2) && p.row2.length >= 4) dataC.row2 = p.row2;
+        }
       } catch(e) {}
     }
-    if (!alreadyHas) {
-      localStorage.setItem("collectedLetters", JSON.stringify({
-        row1: ["W","N","S","A"],
-        row2: ["R","A","S","O"]
-      }));
-    }
+    localStorage.setItem("collectedLetters", JSON.stringify(dataC));
     teamId   = id;
     teamName = id;
 
